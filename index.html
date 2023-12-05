@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+        <script>
+function calc(a, c) {
+                [a, c] = [+a, +c];
+                a = (a % c + c) % c;
+                if (!a || c < 2) return `входные данные не верны`;
+                var [s, b] = [[], c];
+                while(b) ([a, b] = [b, a % b], s.push({a, b}));
+                if (a !== 1) return `'a' не обратимое, то есть не имеет обратного`;
+                var [x, y] = [1, 0];
+                for(var i = s.length - 2; i >= 0; --i) [x, y] = [y,  x - y * Math.floor(s[i].a / s[i].b)];
+                return (y % c + c) % c;
+}  
+function main() {
+				var a = document.querySelector('#a').value;
+				var c = document.querySelector('#c').value;
+				var res = calc(a, c);
+				alert(res);
+			}   
+
+            
+        </script>
+	</head>
+	<body>
+		
+        <form class="form">
+            <h1 class="form-title">Обратное по модулю</h1>
+            <div class="form-group">
+                <input class="form-input" placeholder=" " type="text" id="a"/>
+                <label class="form-label">A=</label>
+            </div>
+    
+            <div class="form-group">
+                <input class="form-input" placeholder=" " type="text" id="c"/>
+                <label class="form-label">C=</label>
+            </div>
+    
+            <input class="form-button" type="button" value="Ответ" onclick="main()" >
+        </form>
+
+	</body>
+</html>
